@@ -105,10 +105,10 @@
         <div class="footer-section">
             <h3>Follow Us</h3>
             <div class="social-icons">
-                <a href="#"><i class="bi bi-facebook"></i></a>
-                <a href="#"><i class="bi bi-twitter"></i></a>
-                <a href="#"><i class="bi bi-instagram"></i></a>
-                <a href="#"><i class="bi bi-linkedin"></i></a>
+                <a href="https://www.facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="bi bi-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.linkedin.com" target="_blank"><i class="bi bi-linkedin"></i></a>
             </div>
         </div>
     
@@ -124,7 +124,7 @@
   include"connection.php";
   session_start();
   if(!isset($_POST['username'])){
-    header("location:login.php");
+  
   }
  ?>
 </body>

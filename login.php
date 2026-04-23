@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration form</title>
+    <title>Login form</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -46,7 +46,7 @@
 
 <div class="form-container">
     <h2>Login Form</h2>
-    <form method="POST" action="register.php">
+    <form method="POST" action="">
         <label>Username:</label>
         <input type="text" name="user" required>
         <label>password:</label>
@@ -62,23 +62,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $a = $_POST['user'];
     $b = $_POST['pass'];
-$c = "SELECT * FROM student WHERE username='$a'";
-$d=mysqli_query($conn,$c);
-While($x=mysqli_fetch_assoc($d)){
 
-    if (password_verify($b, $x['password'])) {
+    $stmt = $conn->prepare("SELECT * FROM student WHERE username=?");
+    $stmt->bind_param("s", $a);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+
+    if ($row && password_verify($b, $row['password'])) {
 
         $_SESSION['username'] = $a;
-
-        header("Location:home.php");
+        header("Location: home.php");
         exit();
-    }
 
-else {
-    echo "User not found";
+    } else {
+        echo "Invalid login";
+    }
 }
-}
-}  
 ?>
 
 
