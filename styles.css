@@ -1,0 +1,301 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c3e50;
+    padding: 15px 30px;
+}
+
+.logo {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    width: 80%;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+.nav-links li a:hover {
+    color: #1abc9c;
+}
+
+/* Home Section */
+.home {
+    height: 100vh;
+    background: linear-gradient(to right, #3498db, #1abc9c);
+    color: white;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.home h1 {
+    font-size: 40px;
+}
+
+.home p {
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.home button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    background-color: white;
+    color: #2c3e50;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.home button:hover {
+    background-color: #ecf0f1;
+}
+///side bar
+.main-content {
+    margin-left: 230px;
+    padding: 20px;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 230px;
+    height: 40vh;
+    background: #1f2d3d;
+    position: fixed;
+    border-radius: 7px;
+    padding-top: 20px;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+/* Title */
+.sidebar h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Links */
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #dcdde1;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.sidebar a:hover {
+    background: #00a8ff;
+    color: white;
+    padding-left: 25px;
+}
+
+/* Icons */
+.sidebar i {
+    font-size: 18px;
+}
+
+//.container
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f6f9;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1f2d3d;
+    padding: 15px 40px;
+}
+
+.navbar h2 {
+    color: white;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar ul li a {
+    color: #dcdde1;
+    text-decoration: none;
+}
+
+.navbar ul li a:hover {
+    color: #00a8ff;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.header h1 {
+    color: #2c3e50;
+    font-size: 32px;
+}
+
+.header p {
+    color: #7f8c8d;
+    margin-top: 10px;
+}
+
+/* Cards */
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+/* Card */
+.card {
+    background: white;
+    width: 260px;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+/* Icon */
+.icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+/* Text */
+.card h2 {
+    color: #34495e;
+}
+
+.card p {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin: 15px 0;
+}
+
+/* Button */
+.card button {
+    padding: 10px 25px;
+    border: none;
+    background: #00a8ff;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.card button:hover {
+    background: #0077cc;
+    text-decoration: none;
+}
+.card a{
+text-decoration: none;
+}
+//footer
+
+/* Footer */
+.footer {
+  
+   
+    padding-top: 30px;
+}
+
+/* Layout */
+.footer-container {
+    display: flex;
+      background-color: rgb(14, 1, 1);
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin-bottom: 0%;
+    bottom: 0;
+}
+
+/* Sections */
+.footer-section {
+    max-width: 250px;
+    margin: 10px;
+   
+}
+
+.footer-section h3 {
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+/* Links */
+.footer-section a {
+    display: block;
+    color: #dcdde1;
+    text-decoration: none;
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.footer-section a:hover {
+    color: #00a8ff;
+}
+
+/* Social icons */
+.social-icons a {
+    color: #dcdde1;
+    font-size: 20px;
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #00a8ff;
+}
+//ahref
+
+a {
+    text-decoration: none;
+    color: #dcdde1;
+}
