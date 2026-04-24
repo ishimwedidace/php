@@ -13,8 +13,8 @@
         <div class="logo">System Management</div>
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
+            <li><a href="stockin.php">stock in</a></li>
+            <li><a href="stockout.php">Stock out</a></li>
             <li><a href="logiout.php">logout</a></li>
            
         </ul>
@@ -36,9 +36,7 @@
         <i class="bi bi-bar-chart"></i> Reports
     </a>
 
-    <a href="settings.php">
-        <i class="bi bi-gear-wide"></i> Settings
-    </a>
+
 </div>
 
 
@@ -47,7 +45,7 @@
 
     <!-- Welcome -->
     <div class="header">
-        <h1>Welcome Back 👋</h1>
+        <h1>Welcome TO System Management 👋</h1>
         <p>Manage your system </p>
     </div>
 
@@ -56,23 +54,23 @@
 
         <div class="card">
             <div class="icon">🛒</div>
-            <h2>Stock out</h2>
+            <h2>Total sales</h2>
             <p>Process and manage product sales quickly.</p>
-            <button><a href="stockout.php">Open</a></button>
+            <button><a href="report.php">Open</a></button>
         </div>
 
         <div class="card">
             <div class="icon">➕</div>
-            <h2>Stock in</h2>
-            <p>Add and organize new products </p>
-            <button><a href="stockin.php">Add</a></button>
+            <h2>Profit</h2>
+            <p>Profit and organize sales products </p>
+            <button><a href="profit.php">View</a></button>
         </div>
 
         <div class="card">
             <div class="icon">📊</div>
-            <h2>Reports</h2>
+            <h2>Loss</h2>
             <p>Track performance and sales analytics.</p>
-            <button><a href="report.php">View</a></button>
+            <button><a href="loss.php">View</a></button>
         </div>
 
     </div>
@@ -98,17 +96,32 @@
             <a href="#">Home</a>
             <a href="admin.php">Dashboard</a>
             <a href="report.php">Reports</a>
-            <a href="setting.php">Settings</a>
+    
         </div>
 
         <!-- Social Media -->
         <div class="footer-section">
             <h3>Follow Us</h3>
             <div class="social-icons">
-                <a href="https://www.facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
-                <a href="https://www.twitter.com" target="_blank"><i class="bi bi-twitter"></i></a>
-                <a href="https://www.instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>
-                <a href="https://www.linkedin.com" target="_blank"><i class="bi bi-linkedin"></i></a>
+             <a href="https://www.facebook.com" target="_blank">
+            <i class="bi bi-facebook"></i>  __didace__
+        </a>
+
+        <a href="https://www.twitter.com" target="_blank">
+            <i class="bi bi-twitter"></i>  __didace__
+        </a>
+
+        <a href="https://www.instagram.com" target="_blank">
+            <i class="bi bi-instagram"></i>  __didace__
+        </a>
+
+        <a href="https://wa.me/2507XXXXXXXX" target="_blank">
+            <i class="bi bi-whatsapp"></i>0795594850
+        </a>
+
+        <a href="https://www.linkedin.com" target="_blank">
+            <i class="bi bi-linkedin"></i>  ishimwedidace
+        </a>
             </div>
         </div>
     
@@ -120,12 +133,6 @@
     
  </div>
 
- <?php
-  include"connection.php";
-  session_start();
-  if(!isset($_POST['username'])){
-  
-  }
- ?>
+
 </body>
 </html>
