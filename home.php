@@ -15,7 +15,7 @@
             <li><a href="#">Home</a></li>
             <li><a href="stockin.php">stock in</a></li>
             <li><a href="stockout.php">Stock out</a></li>
-            <li><a href="logiout.php">logout</a></li>
+            <li><a href="logout.php">logout</a></li>
            
         </ul>
     </nav>
@@ -133,6 +133,14 @@
     
  </div>
 
+ <?php
+session_start();
+include "connection.php";
+if (!isset($_SESSION['username'])) {
+
+    exit();
+}
+?>
 
 </body>
 </html>

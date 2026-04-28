@@ -38,7 +38,9 @@
     </style>
 </head>
 <body>
-     <?php include "header.php"; ?>
+
+<?php include "header.php"; ?>
+
 <a href="home.php" style="
     display:inline-block;
     padding:10px 15px;
@@ -52,57 +54,72 @@
 <div class="form-container">
     <h2>Sell Product</h2>
 <form action="remove.php" method="POST">
-
     <input type="number" name="product_id" placeholder="Product ID" required>
-
-    <input type="number" name="quantity" placeholder="Quantity Sold" required>
-
-    <input type="text" name="soldprice" placeholder="Sold Price" required>
-
-    <input type="text" name="cu_name" placeholder="Customer Name" required>
-
+    <input type="number" step="0.01" name="quantity" placeholder="Kg" required>
+    <input type="number" step="0.01" name="soldprice" placeholder="Price per Kg" required>
     <input type="tel" name="cu_phone" placeholder="Customer Phone" required>
-
-    <button type="submit">Sell Product</button>
-
+    <button type="submit">Sell</button>
 </form>
 </div>
-
 <?php
 include "connection.php";
 
-$product_id = $_POST['product_id'];
-$quantity = $_POST['quantity'];
-$soldprice = $_POST['soldprice'];
-$cu_name = $_POST['cu_name'];
-$cu_phone = $_POST['cu_phone'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-/* =========================
-   1. GET PRODUCT FROM STOCK
-   ========================= */
-$get = mysqli_query($conn, "SELECT * FROM stock WHERE id='$product_id'");
-$row = mysqli_fetch_assoc($get);
+    $product_id = $_POST['product_id'];
+    $quantity   = $_POST['quantity'];      
+    $price      = $_POST['soldprice'];     
+    $cu_phone   = $_POST['cu_phone'];
 
-$name = $row['name'];
+  
+    $total = $quantity * $price;
 
-/* =========================
-   2. INSERT INTO SOLDPRODUCT
-   ========================= */
-$sql = "INSERT INTO soldproduct 
-(name, quantity, soldprice, cu_name, cu_phone, product_id, time_sold)
-VALUES 
-('$name', '$quantity', '$soldprice', '$cu_name', '$cu_phone', '$product_id', NOW())";
+    $result = mysqli_query($conn, "SELECT * FROM stock WHERE id='$product_id'");
+    $row = mysqli_fetch_assoc($result);
 
-mysqli_query($conn, $sql);
+    if (!$row) {
+        die("❌ Product not found");
+    }
 
-/* =========================
-   3. REMOVE FROM STOCK
-   ========================= */
-$delete = "DELETE FROM stock WHERE id='$product_id'";
-mysqli_query($conn, $delete);
+    $available = $row['quantity'];
 
-echo "✔ Product sold and removed from stock successfully!";
+    // ❗ Prevent overselling
+    if ($quantity > $available) {
+        die("❌ Not enough stock. Available: $available kg");
+    }
+
+    // 1️⃣ Save sale
+    $insert = "INSERT INTO soldproduct 
+    (product_id, quantity,soldprice, cu_phone, time_sold)
+    VALUES 
+    ('$product_id', '$quantity', '$price', '$cu_phone', NOW())";
+
+    if (!mysqli_query($conn, $insert)) {
+        die("❌ Insert failed: " . mysqli_error($conn));
+    }
+
+    // 2️⃣ Reduce stock
+    $update = "UPDATE stock 
+               SET quantity = quantity - $quantity 
+               WHERE id='$product_id'";
+
+    if (!mysqli_query($conn, $update)) {
+        die("❌ Update failed: " . mysqli_error($conn));
+    }
+
+    // 3️⃣ Optional: remove if empty
+    mysqli_query($conn, "DELETE FROM stock WHERE id='$product_id' AND quantity <= 0");
+
+    echo "
+    <h3 style='color:green;'>✔ Sale completed</h3>
+    <p>Sold: $quantity kg</p>
+    <p>Price per kg: $price</p>
+    <p><strong>Total: $total</strong></p>
+    ";
+}
 ?>
-    <?php include "footer.php"; ?>
+
+<?php include "footer.php"; ?>
+
 </body>
 </html>

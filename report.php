@@ -95,7 +95,6 @@ $result = mysqli_query($conn, $sql);
         <thead>
             <tr>
                 <th>Product ID</th>
-                <th>Name</th>
                 <th>Quantity</th>
                 <th>Sold Price</th>
                 <th>Total</th>
@@ -113,7 +112,6 @@ $result = mysqli_query($conn, $sql);
 
             echo "<tr>
                 <td>{$row['product_id']}</td>
-                <td>{$row['name']}</td>
                 <td>{$row['quantity']}</td>
                 <td>{$row['soldprice']}</td>
                 <td>{$total}</td>

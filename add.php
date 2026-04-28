@@ -66,9 +66,9 @@
     <form method="POST">
         <input type="text" name="name" placeholder="name" required>
 
-        <input type="number" step="0.01" name="buyprice" placeholder="buy price" required>
+        <input type="number" step="0.01" name="buyprice" placeholder="buy price/kg" required>
 
-        <input type="number" step="0.01" name="sellprice" placeholder="sell price" required>
+        <input type="number" step="0.01" name="sellprice" placeholder="sell price/kg" required>
 
         <input type="number" name="quantity" placeholder="quantity" required>
 
