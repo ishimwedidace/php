@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Stock Table</title>
+    <title>Management System</title>
     <style>
      body {
             font-family: Arial, sans-serif;

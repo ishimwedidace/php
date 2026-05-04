@@ -12,7 +12,7 @@
     <nav class="navbar">
         <div class="logo">System Management</div>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
+            <li><a href="home.php">Home</a></li>
             <li><a href="stockin.php">stock in</a></li>
             <li><a href="stockout.php">Stock out</a></li>
             <li><a href="logout.php">logout</a></li>
@@ -22,7 +22,7 @@
 <div class="main-content">
 
 <div class="sidebar">
-    <h2><i class="bi bi-border-width"></i> Manage</h2>
+    <h2><i class="bi bi-border-width"></i> </h2>
 
     <a href="remove.php">
         <i class="bi bi-trash"></i> Remove Product
@@ -103,23 +103,23 @@
         <div class="footer-section">
             <h3>Follow Us</h3>
             <div class="social-icons">
-             <a href="https://www.facebook.com" target="_blank">
+             <a href="https://www.facebook.com/ __didace__" target="_blank">
             <i class="bi bi-facebook"></i>  __didace__
         </a>
 
-        <a href="https://www.twitter.com" target="_blank">
+        <a href="https://www.twitter.com/ __didace__" target="_blank">
             <i class="bi bi-twitter"></i>  __didace__
         </a>
 
-        <a href="https://www.instagram.com" target="_blank">
+        <a href="https://www.instagram.com/__didace__" target="_blank">
             <i class="bi bi-instagram"></i>  __didace__
         </a>
 
-        <a href="https://wa.me/2507XXXXXXXX" target="_blank">
+        <a href="https://wa.me/0795594850" target="_blank">
             <i class="bi bi-whatsapp"></i>0795594850
         </a>
 
-        <a href="https://www.linkedin.com" target="_blank">
+        <a href="https://www.linkedin.com/ ishimwedidace" target="_blank">
             <i class="bi bi-linkedin"></i>  ishimwedidace
         </a>
             </div>

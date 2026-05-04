@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sell Product</title>
+    <title>Management System</title>
 
     <style>
         body {
@@ -55,25 +55,22 @@
     <h2>Sell Product</h2>
 <form action="remove.php" method="POST">
     <input type="number" name="product_id" placeholder="Product ID" required>
-    <input type="number" step="0.01" name="quantity" placeholder="Kg" required>
+    <input type="number" step="0.01" name="quantity" placeholder="Quantity   Kg" required>
     <input type="number" step="0.01" name="soldprice" placeholder="Price per Kg" required>
     <input type="tel" name="cu_phone" placeholder="Customer Phone" required>
     <button type="submit">Sell</button>
 </form>
-</div>
-<?php
+</div><?php
 include "connection.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $product_id = $_POST['product_id'];
-    $quantity   = $_POST['quantity'];      
-    $price      = $_POST['soldprice'];     
+    $quantity   = (float) $_POST['quantity'];
+    $selling_price = (float) $_POST['soldprice'];
     $cu_phone   = $_POST['cu_phone'];
 
   
-    $total = $quantity * $price;
-
     $result = mysqli_query($conn, "SELECT * FROM stock WHERE id='$product_id'");
     $row = mysqli_fetch_assoc($result);
 
@@ -81,44 +78,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("❌ Product not found");
     }
 
-    $available = $row['quantity'];
+    $available   = (float) $row['quantity'];
+    $cost_price  = (float) $row['buyprice']; 
 
-    // ❗ Prevent overselling
     if ($quantity > $available) {
-        die("❌ Not enough stock. Available: $available kg");
+        die("❌ Not enough stock");
     }
 
-    // 1️⃣ Save sale
+
+    $total_amount = $quantity * $selling_price;
+    $total_cost   = $quantity * $cost_price;
+    $profit       = $total_amount - $total_cost;
+
+    
     $insert = "INSERT INTO soldproduct 
-    (product_id, quantity,soldprice, cu_phone, time_sold)
+    (product_id, quantity, soldprice, cu_phone, time_sold)
     VALUES 
-    ('$product_id', '$quantity', '$price', '$cu_phone', NOW())";
+    ('$product_id', '$quantity', '$selling_price', '$cu_phone', NOW())";
 
     if (!mysqli_query($conn, $insert)) {
         die("❌ Insert failed: " . mysqli_error($conn));
     }
 
-    // 2️⃣ Reduce stock
-    $update = "UPDATE stock 
-               SET quantity = quantity - $quantity 
-               WHERE id='$product_id'";
 
-    if (!mysqli_query($conn, $update)) {
-        die("❌ Update failed: " . mysqli_error($conn));
+    $new_quantity = $available - $quantity;
+
+    if ($new_quantity <= 0) {
+        mysqli_query($conn, "DELETE FROM stock WHERE id='$product_id'");
+    } else {
+        mysqli_query($conn, "UPDATE stock SET quantity=$new_quantity WHERE id='$product_id'");
     }
+$color = ($profit >= 0) ? "green" : "red";
+  echo "
+<div style='
+    width:300px;
+    margin:20px auto;
+    padding:20px;
+    border-radius:10px;
+    background:#f4f6f9;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    font-family:Arial;
+'>
 
-    // 3️⃣ Optional: remove if empty
-    mysqli_query($conn, "DELETE FROM stock WHERE id='$product_id' AND quantity <= 0");
+    <h3 style='text-align:center; color:green;'>✅ Sale Recorded</h3>
 
-    echo "
-    <h3 style='color:green;'>✔ Sale completed</h3>
-    <p>Sold: $quantity kg</p>
-    <p>Price per kg: $price</p>
-    <p><strong>Total: $total</strong></p>
-    ";
+    <p><strong>Quantity:</strong> $quantity</p>
+    <p><strong>Total Sold:</strong> $total_amount Frw</p>
+    <p><strong>Total Cost:</strong> $total_cost Frw</p>
+ <p><strong>Profit:</strong> <span style='color:$color;'>$profit Frw</span></p>
+
+</div>
+";
 }
 ?>
-
 <?php include "footer.php"; ?>
 
 </body>
